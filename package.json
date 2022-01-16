@@ -4,10 +4,18 @@
   "main": "index.js",
   "author": "Jean carlos <jeandub1@hotmail.com>",
   "license": "MIT",
-  "lint-staged":{
-    "*.js":["standard"]
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.js": [
+      "standard"
+    ]
   },
   "devDependencies": {
+    "husky": "^7.0.4",
     "lint-staged": "^12.1.7",
     "standard": "^16.0.4"
   }
