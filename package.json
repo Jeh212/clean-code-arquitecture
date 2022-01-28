@@ -19,7 +19,7 @@
     "ts-standard": "^11.0.0"
   },
   "scripts": {
-    "test": "jest",
-    "test:staged":"jest"
+    "test": "jest --passWithNoTests --watch",
+    "test:staged": "jest"
   }
 }
