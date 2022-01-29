@@ -27,7 +27,7 @@ describe("SignUp Controller", () => {
     };
 
     const httpResponse = sut.handle(httpRequest);
-    expect(httpResponse.body).toEqual(new Error("EMAIL"));
+    expect(httpResponse.body).toEqual(new Error("email"));
     expect(httpResponse.statusCode).toBe(400);
   });
 });
