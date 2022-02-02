@@ -1,3 +1,4 @@
+import { IAddAccount } from "../../domain/usecases/add-account";
 import { InvalidParamError, MissinParamError } from "../erros";
 import { badRequest, serverError } from "../helpers/http-helper";
 import {
@@ -9,9 +10,11 @@ import {
 
 export class SignUpController implements IController {
   private readonly emailValidator: IEmailValidator;
+  private readonly addAccount: IAddAccount;
 
-  constructor(emailValidator: IEmailValidator) {
+  constructor(emailValidator: IEmailValidator, addAccount: IAddAccount) {
     this.emailValidator = emailValidator;
+    this.addAccount = addAccount;
   }
 
   handle(httpRequest: HttpRequest): HttpResponse {
@@ -39,6 +42,13 @@ export class SignUpController implements IController {
       if (!isValid) {
         return badRequest(new InvalidParamError("email"));
       }
+
+      this.addAccount.add({
+        name,
+        email,
+        password,
+      });
+
       return {};
     } catch (error) {
       return serverError();
