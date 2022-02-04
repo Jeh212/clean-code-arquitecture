@@ -1,4 +1,4 @@
-import { AccountModel } from "../domain/account";
+import { AccountModel } from "../models/account";
 
 interface IAddAccountModel {
   name: string;
@@ -7,7 +7,11 @@ interface IAddAccountModel {
 }
 
 interface IAddAccount {
-  add({ email, name, password }: IAddAccountModel): AccountModel;
+  add({
+    email,
+    name,
+    password,
+  }: IAddAccountModel): Promise<AccountModel | undefined>;
 }
 
 export { IAddAccount, IAddAccountModel };

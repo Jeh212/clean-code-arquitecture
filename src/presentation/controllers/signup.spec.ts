@@ -1,3 +1,4 @@
+import { AccountModel } from "../../domain/models/account";
 import {
   IAddAccount,
   IAddAccountModel,
@@ -26,7 +27,7 @@ const makeEmailValidatorWithError = (): IEmailValidator => {
 
 const addAccount = (): IAddAccount => {
   class AddAccountStub implements IAddAccount {
-    add({ email, name, password }: IAddAccountModel) {
+    add({ email, name, password }: IAddAccountModel): AccountModel {
       const fakeAccount = {
         id: "valid_id",
         name: "any_name",
