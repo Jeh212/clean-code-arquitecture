@@ -27,14 +27,19 @@ const makeEmailValidatorWithError = (): IEmailValidator => {
 
 const addAccount = (): IAddAccount => {
   class AddAccountStub implements IAddAccount {
-    add({ email, name, password }: IAddAccountModel): AccountModel {
+    add({
+      email,
+      name,
+      password,
+    }: IAddAccountModel): Promise<AccountModel | undefined> {
       const fakeAccount = {
         id: "valid_id",
         name: "any_name",
         email: "invalid_email@mail.com",
         password: "any_password",
       };
-      return fakeAccount;
+
+      return Promise.resolve(fakeAccount);
     }
   }
 
