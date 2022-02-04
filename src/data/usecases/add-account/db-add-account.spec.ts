@@ -6,14 +6,17 @@ interface ISutTypes {
   encryptStub: IEncrypter;
 }
 
-const makeSut = (): ISutTypes => {
-  class EncrypterStub {
+const makeEncrypter = (): IEncrypter => {
+  class EncrypterStub implements IEncrypter {
     async encrypt(value: string): Promise<string> {
       return new Promise((resolve) => resolve("hashed_password"));
     }
   }
+  return new EncrypterStub();
+};
 
-  const encryptStub = new EncrypterStub();
+const makeSut = (): ISutTypes => {
+  const encryptStub = makeEncrypter();
   const sut = new DBAddAccount(encryptStub);
 
   return {
